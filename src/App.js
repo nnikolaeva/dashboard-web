@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
+import { Route } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import './App.css';
+import Dashboard from './Components/Dashboard';
+import Settings from './Components/Settings';
 
 const posts = [
   {"id": 1, "content": "test", "timestamp": 1537811000, "priority": 1, "user": {"name": "nn"}},
@@ -16,10 +20,26 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <p>nav</p>
+          <div className="dashboard-link">
+          <div className="open-search">
+            <Link
+            to='/'
+            className=''
+            >{"Dashboard"}
+            </Link>
+          </div>
+          <div className="open-search">
+            <Link
+            to='/settings'
+            className=''
+            >{"Settings"}
+            </Link>
+          </div>
+          </div>
         </header>
         <div className="main-container">
-        
+          <Route exact path='/' render={() => <Dashboard posts={this.state.posts} />} />
+          <Route path='/settings' component={Settings} />
         </div>
 
 
