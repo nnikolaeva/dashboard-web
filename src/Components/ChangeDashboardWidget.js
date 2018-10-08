@@ -20,9 +20,13 @@ class ChangeDashboardWidget extends Component {
         showInput: false
       })
       console.log("change dashboard");
+      const params = {post_id: this.props.post_id};
+      params.id = value;
+      console.log(params);
     }
   }
   render () {
+    console.log(this.props);
     const input = <div className="input-dashboard">
       <input className="" type="text" />
       <button>{"+"}</button>
@@ -31,9 +35,9 @@ class ChangeDashboardWidget extends Component {
       <div className="change-dashboard-select">
       {this.state.showInput && input}
       
-      <select onChange={this.handleSelectChange} >
+      <select defaultValue={"none"} onChange={this.handleSelectChange} >
       <option value="" disabled>Move to...</option>
-      <option value="">want to read</option>
+      <option value="none">new</option>
       <option value="new">new</option>
       </select>
       </div>

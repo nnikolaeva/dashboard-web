@@ -42,3 +42,98 @@
     max-width: 320px;
   }
 }
+
+body {
+  font-family: 'Patrick Hand SC', cursive;
+}
+
+.post-item {
+  width: 300px;
+  height: 200px;
+  border-top: solid #c4c4c4 1px;
+  
+  background-color: #fcfcd4;
+}
+
+.content-container {
+  width: 270px;
+  height: 170px;
+  margin-top: 10px;
+  margin-left: 10px;
+  border: solid #e0e0e0 1px;
+  
+  background-color: white;
+}
+
+.post-content {
+  font-family: 'Patrick Hand SC', cursive;
+  padding: 10px;
+  background-color: #fcfcd4;
+  font-size: 20px;
+}
+
+.post-info {
+  font-family: 'Patrick Hand SC', cursive;
+  padding: 10px;
+  background-color: #fcfcd4;
+  font-size: 20px;
+  float: right;
+}
+
+.post {
+  
+  
+  box-shadow: 3px 3px 3px #aaaaaa;
+  margin-right: 20px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  background-color: #fcfcd4;
+}
+
+.post-container {
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.post-controls {
+  font-family: 'Patrick Hand SC', cursive;
+}
+
+.post-btn {
+  font-size: 20px;
+}
+
+.create-post-btn {
+  font-family: 'Patrick Hand SC', cursive;
+  font-size: 20px;
+}
+
+.all-posts-control {
+  padding-left: 40px;
+}
+
+.update-content {
+  padding: 5px;
+  font-family: 'Patrick Hand SC', cursive;
+}
+
+.App-header {
+  height: 50px;
+  width: 100%;
+  padding: 10px;
+  position: fixed;
+  background: #CCC;
+  color: white;
+  z-index: 1;
+}
+
+.nav-item {
+  float: left;
+  padding-left: 20px;
+  font-size: 1.5em; 
+}
+
+.main-container {
+  padding-top: 50px;
+}
