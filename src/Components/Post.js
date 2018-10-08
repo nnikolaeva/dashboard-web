@@ -35,7 +35,7 @@ class Post extends Component {
 
   
   render () {
-    const {post, dashboards, handleDelete, handleUpdatePost} = this.props;
+    const {post, dashboards, handleDelete, handleUpdatePost, handlePin} = this.props;
     const {content, timestamp} = post;
 
     var postContentElement = (<p className="post-content">{content}</p>);
@@ -55,7 +55,7 @@ class Post extends Component {
     <div className="post">
       <div className="post-controls">
       <Button className="post-btn" bsStyle="link" >Move</Button>
-      <Button className="post-btn" bsStyle="link" >Pin</Button>
+      <Button className="post-btn" bsStyle="link" onClick={(postToPin) => handlePin(post)} >Pin</Button>
       <Button className="post-btn" bsStyle="link" onClick={(value) => this.handleEdit(content)}>Edit</Button>
       <Button className="post-btn" bsStyle="link" onClick={(postId) => handleDelete(post.id)} >Delete</Button>
       </div>

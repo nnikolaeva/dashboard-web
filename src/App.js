@@ -21,9 +21,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    $.getJSON( BASE_URL + "/rest/post", ( json ) => {
-      this.setState({posts: json["posts"]});
-    });
+    this.fetchAllPosts();
 
     $.getJSON( BASE_URL + "/rest/dashboard", ( json ) => {
       for (const d of json["dashboards"]) {
@@ -34,6 +32,12 @@ class App extends Component {
           }))
       });
       }
+    });
+  }
+
+  fetchAllPosts = () => {
+    $.getJSON( BASE_URL + "/rest/post", ( json ) => {
+      this.setState({posts: json["posts"]});
     });
   }
 
@@ -85,6 +89,19 @@ class App extends Component {
     
   }
 
+  handlePin = (postToPin) => {
+    console.log("post to pin: " + postToPin.content);
+    $.ajax({
+      url : BASE_URL + "/rest/pin",
+      type : 'POST',
+      data: JSON.stringify(postToPin),
+      contentType: 'json',
+    }).then(() => {
+      this.fetchAllPosts();
+    });
+  }
+
+
   render() {
     console.log(this.state);
     if (this.state.userName === "") {
@@ -124,7 +141,8 @@ class App extends Component {
                       posts={this.state.posts}
                       dashboards={this.state.dashboards} 
                       handleDelete={this.handleDelete} 
-                      handleUpdatePost={this.handleUpdatePost}/>} />
+                      handleUpdatePost={this.handleUpdatePost}
+                      handlePin={this.handlePin}/>} />
           <Route path='/settings' component={Settings} />
           {this.state.dashboards.map((d) => {
             return <Route path='/dash/:name' render={() => <UserDashboard posts={d.posts} />} />
