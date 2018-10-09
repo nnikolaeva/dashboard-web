@@ -16,12 +16,15 @@ class App extends Component {
 
   state = {
     posts: [],
-    userName: "",
     dashboards: []
   }
 
   componentDidMount() {
-    this.fetchAllPosts();
+      console.log("fetch");
+
+    $.getJSON( BASE_URL + "/rest/post", ( json ) => {
+      this.setState({posts: json["posts"]});
+    });
 
     $.getJSON( BASE_URL + "/rest/dashboard", ( json ) => {
       for (const d of json["dashboards"]) {
@@ -33,9 +36,11 @@ class App extends Component {
       });
       }
     });
+    
   }
 
   fetchAllPosts = () => {
+    console.log("fetch");
     $.getJSON( BASE_URL + "/rest/post", ( json ) => {
       this.setState({posts: json["posts"]});
     });
@@ -48,16 +53,16 @@ class App extends Component {
   });
   }
 
-  handleLogin = (params) => {
-    $.ajax({
-      url : BASE_URL+ "/rest/validate",
-      type : 'POST',
-      data: JSON.stringify(params),
-      contentType: 'json'
-    }).then(() => {
-     this.getCurrentUser();
-    });
-  }
+  // handleLogin = (params) => {
+  //   $.ajax({
+  //     url : BASE_URL+ "/rest/validate",
+  //     type : 'POST',
+  //     data: JSON.stringify(params),
+  //     contentType: 'json'
+  //   }).then(() => {
+  //    this.getCurrentUser();
+  //   });
+  // }
 
   handleDelete = (postId) => {
     $.ajax({
@@ -102,13 +107,29 @@ class App extends Component {
   }
 
 
+  createNewPost = (value) => {
+    
+    const params = {content: value};
+    $.ajax({
+      url : BASE_URL + "/rest/post",
+      type : 'POST',
+      data: JSON.stringify(params),
+      contentType: 'json'
+    }).then(() => {
+      console.log("ready to creare new post: " + value);
+      this.fetchAllPosts();
+    });
+  }
+
+
   render() {
+    console.log("app state");
     console.log(this.state);
-    if (this.state.userName === "") {
-      return (
-        <Login handleLogin={this.handleLogin}/>
-        )
-    }
+    // if (this.state.userName === "") {
+    //   return (
+    //     <Login handleLogin={this.handleLogin}/>
+    //     )
+    // }
     return (
       <div className="App">
 
@@ -142,7 +163,8 @@ class App extends Component {
                       dashboards={this.state.dashboards} 
                       handleDelete={this.handleDelete} 
                       handleUpdatePost={this.handleUpdatePost}
-                      handlePin={this.handlePin}/>} />
+                      create={this.createNewPost}
+                      handlePin={this.handlePin}/>}/>
           <Route path='/settings' component={Settings} />
           {this.state.dashboards.map((d) => {
             return <Route path='/dash/:name' render={() => <UserDashboard posts={d.posts} />} />
