@@ -18,30 +18,28 @@ class Main extends Component {
       contentType: 'json'
     }).then(() => {
      this.getCurrentUser();
-    });
+   });
   }
 
   getCurrentUser = () => {
-  $.getJSON( BASE_URL + "/rest/sessionuser", ( json ) => {
-    console.log(json);
-    localStorage.setItem("isUserLogged", "logged");
-    this.setState({userName: json['name']});
-  });
+    $.getJSON( BASE_URL + "/rest/sessionuser", ( json ) => {
+      localStorage.setItem("isUserLogged", "logged");
+      this.setState({userName: json['name']});
+    });
   }
 
   render () {
-    console.log(localStorage);
-  if (!localStorage.getItem("isUserLogged")) {
-    return (
-      <Login handleLogin={this.handleLogin}/>
+    if (!localStorage.getItem("isUserLogged")) {
+      return (
+        <Login handleLogin={this.handleLogin}/>
 
-      )
-  }
+        )
+    }
 
     return (
       <App userName={this.state.userName}/>
       )
-   
+    
   }
 
   

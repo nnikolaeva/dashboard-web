@@ -8,8 +8,6 @@ class NewPost extends Component {
     
   }
 
-  
-
   handleChangeContent = event => {
     this.setState({
       [event.target.id]: event.target.value
@@ -21,28 +19,23 @@ class NewPost extends Component {
     this.props.close()
   }
   
-  
-  
   render () {
-
-
     return (
-    <div className="post">
+      <div className="post">
       
       <div className="post-item">
       <FormGroup className="update-content" controlId="content">
       <FormControl 
-        componentClass="textarea"
-        value={this.state.content}
-        onChange={this.handleChangeContent}/>
-        <Button className="post-btn" bsStyle="link" onClick={this.handleCreate}>Create</Button>
-        <Button className="post-btn" bsStyle="link" onClick={this.props.close}>Cancel</Button>
-        </FormGroup>
-      
+      componentClass="textarea"
+      value={this.state.content}
+      onChange={this.handleChangeContent}/>
+      <Button className="post-btn" bsStyle="link" onClick={this.handleCreate}>Create</Button>
+      <Button className="post-btn" bsStyle="link" onClick={this.props.close}>Cancel</Button>
+      </FormGroup> 
       </div>
       </div>
 
-  )  
+      )  
   }
   
 }

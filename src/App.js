@@ -53,16 +53,6 @@ class App extends Component {
   });
   }
 
-  // handleLogin = (params) => {
-  //   $.ajax({
-  //     url : BASE_URL+ "/rest/validate",
-  //     type : 'POST',
-  //     data: JSON.stringify(params),
-  //     contentType: 'json'
-  //   }).then(() => {
-  //    this.getCurrentUser();
-  //   });
-  // }
 
   handleDelete = (postId) => {
     $.ajax({
@@ -123,13 +113,6 @@ class App extends Component {
 
 
   render() {
-    console.log("app state");
-    console.log(this.state);
-    // if (this.state.userName === "") {
-    //   return (
-    //     <Login handleLogin={this.handleLogin}/>
-    //     )
-    // }
     return (
       <div className="App">
 
@@ -167,7 +150,7 @@ class App extends Component {
                       handlePin={this.handlePin}/>}/>
           <Route path='/settings' component={Settings} />
           {this.state.dashboards.map((d) => {
-            return <Route path='/dash/:name' render={() => <UserDashboard posts={d.posts} />} />
+            return <Route path='/dash/:name' render={(posts) => <UserDashboard posts={d.posts} />} />
           })}
           
         </div>

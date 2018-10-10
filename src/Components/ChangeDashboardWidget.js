@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 
-
-
 class ChangeDashboardWidget extends Component {
   state = {
     showInput: false,
     newDashboard: ""
-
   }
 
   handleSelectChange = (event) => {
@@ -19,18 +16,17 @@ class ChangeDashboardWidget extends Component {
       this.setState({
         showInput: false
       })
-      console.log("change dashboard");
       const params = {post_id: this.props.post_id};
       params.id = value;
-      console.log(params);
     }
   }
+
+  
   render () {
-    console.log(this.props);
     const input = <div className="input-dashboard">
-      <input className="" type="text" />
-      <button>{"+"}</button>
-      </div>
+    <input className="" type="text" />
+    <button>{"+"}</button>
+    </div>
     return (
       <div className="change-dashboard-select">
       {this.state.showInput && input}

@@ -52,7 +52,7 @@ class Post extends Component {
 
 
     return (
-    <div className="post">
+      <div className="post">
       <div className="post-controls">
       <Button className="post-btn" bsStyle="link" >Move</Button>
       <Button className="post-btn" bsStyle="link" onClick={(postToPin) => handlePin(post)} >Pin</Button>
@@ -66,7 +66,7 @@ class Post extends Component {
       </div>
       </div>
 
-  )  
+      )  
   }
   
 }

@@ -21,7 +21,6 @@ class Login extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log(this.state);
     var params = {name: this.state.name, password: this.state.password};
 
     this.props.handleLogin(params);
